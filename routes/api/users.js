@@ -4,8 +4,12 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const keys = require('../../config/keys');
 const passport = require('passport');
+
 // Load in User Model
 const User = require('../../models/User');
+
+// Load Input Validations
+const validateRegisterInput = require('../../validation/register');
 
 // Gravatar library
 const gravatar = require('gravatar');
@@ -25,9 +29,16 @@ router.get('/test', (req, res) => res.json({ msg: 'User route working' }));
 */
 
 router.post('/register', (req, res) => {
+	// validate name, email, and password...checks for errors too.
+	const { errors, isValid } = validateRegisterInput(req.body);
+
+	// if there are errors
+	if (!isValid) return res.status(400).json({ errors });
+
 	User.findOne({ email: req.body.email }).then(user => {
 		if (user) {
-			return res.status(400).json({ email: 'Email already exists' });
+			errors.email = 'Email already in use.';
+			return res.status(400).json(errors);
 		} else {
 			const avatar = gravatar.url(req.body.email, {
 				s: '200',
