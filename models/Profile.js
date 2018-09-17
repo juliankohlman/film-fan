@@ -50,6 +50,7 @@ const ProfileSchema = new Schema({
 				required: true
 			},
 			releaseyear: {
+				// should be generated from TMDb
 				type: Number,
 				required: true
 			},

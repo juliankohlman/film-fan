@@ -6,6 +6,9 @@ const passport = require('passport');
 // Load profile validation
 const validateProfileInput = require('../../validation/profile');
 
+// Load review validation
+const validateReviewInput = require('../../validation/review');
+
 // Load Profile/User Models
 const Profile = require('../../models/Profile');
 const User = require('../../models/User');
@@ -177,6 +180,40 @@ router.post(
 					}
 				);
 			}
+		});
+	}
+);
+
+/**
+  @route   POST api/profile/review
+  @desc    Create/edit user film review
+  @access  Private
+*/
+
+router.post(
+	'/review',
+	passport.authenticate('jwt', { session: false }),
+	(req, res) => {
+		const { errors, isValid } = validateReviewInput(req.body);
+
+		// Check Review input validation
+		if (!isValid) {
+			// return errors w/ 400 status
+			return res.status(400).json(errors);
+		}
+		Profile.findOne({ user: req.user.id }).then(profile => {
+			const newReview = {
+				movie: req.body.movie,
+				releaseyear: req.body.releaseyear,
+				rating: req.body.rating,
+				review: req.body.review,
+				watchedon: req.body.watchedon
+			};
+
+			// Add review to reviews array
+			profile.reviews.unshift(newReview);
+
+			profile.save().then(profile => res.json(profile));
 		});
 	}
 );
