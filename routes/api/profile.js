@@ -218,4 +218,47 @@ router.post(
 	}
 );
 
+/**
+  @route   DELETE api/profile/review/:review_id
+  @desc    Delete a user film review
+  @access  Private
+*/
+
+router.delete(
+	'/review/:review_id',
+	passport.authenticate('jwt', { session: false }),
+	(req, res) => {
+		Profile.findOne({ user: req.user.id })
+			.then(profile => {
+				// Find index of review we want to remove
+				const removeIndex = profile.reviews
+					.map(review => review.id)
+					.indexOf(req.params.review_id);
+				// Remove the review from the reviews array
+				profile.reviews.splice(removeIndex, 1);
+				// Save the users profile
+				profile.save().then(profile => res.json(profile));
+			})
+			.catch(err => res.status(404).json(err));
+	}
+);
+
+/**
+  @route   DELETE api/profile
+  @desc    Delete user and profile
+  @access  Private
+*/
+
+router.delete(
+	'/',
+	passport.authenticate('jwt', { session: false }),
+	(req, res) => {
+		Profile.findOneAndRemove({ user: req.user.id }).then(() => {
+			User.findOneAndRemove({ _id: req.user.id }).then(() => {
+				res.json({ success: true });
+			});
+		});
+	}
+);
+
 module.exports = router;
