@@ -46,6 +46,26 @@ router.get(
 );
 
 /**
+  @route   GET api/profile/all
+  @desc    Access all user Profiles
+  @access  Public //able to view profiles whether you're logged in or not
+*/
+
+router.get('/all', (req, res) => {
+	const errors = {};
+	Profile.find()
+		.populate('user', ['name', 'avatar'])
+		.then(profiles => {
+			if (!profiles) {
+				errors.noprofile = 'No profiles exist.';
+				res.status(404).json(errors);
+			}
+			res.json(profiles);
+		})
+		.catch(err => res.status(404).json({ profile: 'No profiles found.' }));
+});
+
+/**
   @route   GET api/profile/handle/:handle
   @desc    Access a profile by handle (back-end)
   @access  Public //able to view profiles whether you're logged in or not
