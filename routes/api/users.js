@@ -10,6 +10,7 @@ const User = require('../../models/User');
 
 // Load Input Validations
 const validateRegisterInput = require('../../validation/register');
+const validateLoginInput = require('../../validation/login');
 
 // Gravatar library
 const gravatar = require('gravatar');
@@ -76,11 +77,22 @@ router.post('/register', (req, res) => {
 */
 
 router.post('/login', (req, res) => {
+	const { errors, isValid } = validateLoginInput(req.body);
+
+	// if there are errors
+	if (!isValid) return res.status(400).json({ errors });
+
 	const email = req.body.email;
 	const pswd = req.body.password;
 
 	User.findOne({ email }).then(user => {
-		if (!user) return res.status(404).json({ email: 'User not found' });
+		if (!user) {
+			errors.email =
+				'User not found, please check your email, and try again.';
+			return res.status(404).json(errors);
+		}
+
+		// password check/confirmation
 		bcrypt.compare(pswd, user.password).then(matching => {
 			if (matching) {
 				// token payload
