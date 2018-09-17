@@ -33,6 +33,7 @@ router.get(
 		const errors = {};
 
 		Profile.findOne({ user: req.user.id })
+			.populate('user', ['name', 'avatar'])
 			.then(profile => {
 				if (!profile) {
 					errors.noprofile = 'Profile for user does not exist.';
@@ -43,6 +44,50 @@ router.get(
 			.catch(err => res.status(404).json(err));
 	}
 );
+
+/**
+  @route   GET api/profile/handle/:handle
+  @desc    Access a profile by handle (back-end)
+  @access  Public //able to view profiles whether you're logged in or not
+*/
+
+router.get('/handle/:handle', (req, res) => {
+	const errors = {};
+	Profile.findOne({ handle: req.params.handle })
+		.populate('user', ['name', 'avatar'])
+		.then(profile => {
+			if (!profile) {
+				errors.noprofile =
+					'Cannot find a Profile for the given user handle.';
+				res.status(404).json(errors);
+			}
+			res.json(profile);
+		})
+		.catch(err => res.status(404).json(err));
+});
+
+/**
+  @route   GET api/profile/user/:user_:id
+  @desc    Access a profile by id (back-end)
+  @access  Public: visitors can view profiles w/out being logged in or registered.
+*/
+
+router.get('/user/:user_id', (req, res) => {
+	const errors = {};
+	Profile.findOne({ user: req.params.user_id })
+		.populate('user', ['name', 'avatar'])
+		.then(profile => {
+			if (!profile) {
+				errors.noprofile =
+					'Cannot find a Profile for the given user id.';
+				res.status(404).json(errors);
+			}
+			res.json(profile);
+		})
+		.catch(err =>
+			res.status(404).json({ profile: 'No profile found for this user.' })
+		);
+});
 
 /**
   @route   POST api/profile
