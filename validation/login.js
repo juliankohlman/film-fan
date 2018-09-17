@@ -3,7 +3,7 @@ const isEmpty = require('./is-empty');
 
 module.exports = function validateLoginInput(data) {
 	let errors = {};
-	// Sanitize name for being empty with is-empty validation function
+	// Sanitize email and password on login attempts
 	data.email = !isEmpty(data.email) ? data.email : '';
 	data.password = !isEmpty(data.password) ? data.password : '';
 
