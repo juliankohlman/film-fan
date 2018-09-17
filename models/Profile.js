@@ -33,7 +33,7 @@ const ProfileSchema = new Schema({
 	bio: {
 		type: String
 	},
-	letterboxdusername: {
+	lboxdusername: {
 		// could also use TMDb user name
 		type: String
 	},
