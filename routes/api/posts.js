@@ -235,7 +235,7 @@ router.delete(
 		Post.findById(req.params.id)
 			.then(post => {
 				// Does comment exist?
-				let postExists =
+				const postExists =
 					post.comments.filter(
 						comment =>
 							comment._id.toString() === req.params.comment_id
