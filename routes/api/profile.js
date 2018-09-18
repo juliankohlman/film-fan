@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+// ? Does bringing in mongoose models below negate this require statement?
 const mongoose = require('mongoose');
 const passport = require('passport');
 
