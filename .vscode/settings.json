@@ -1,0 +1,36 @@
+{
+	"prettier.eslintIntegration": false,
+	"eslint.packageManager": "yarn",
+	"eslint.enable": false,
+	"prettier.tabWidth": 4,
+	"prettier.useTabs": true,
+	"workbench.colorTheme": "Nostromo",
+	"window.zoomLevel": 1,
+	"editor.fontSize": 14,
+	// "sublimeTextKeymap.promptV3Features": true,
+	"editor.multiCursorModifier": "ctrlCmd",
+	"editor.snippetSuggestions": "top",
+	"editor.formatOnPaste": true,
+	"editor.formatOnSave": true,
+	"workbench.iconTheme": "vscode-icons",
+	"terminal.integrated.fontSize": 15,
+	"prettier.singleQuote": true,
+	"npm.packageManager": "yarn",
+	"files.autoSave": "onFocusChange",
+	"javascript.updateImportsOnFileMove.enabled": "always",
+	"terminal.integrated.rendererType": "canvas",
+	"terminal.integrated.lineHeight": 1,
+	"git.autofetch": true,
+	"editor.fontLigatures": true,
+	"breadcrumbs.enabled": true,
+	"emmet.syntaxProfiles": {
+		"javascript": "jsx"
+	},
+	"emmet.includeLanguages": {
+		"javascript": "javascriptreact"
+	},
+	"emmet.triggerExpansionOnTab": true,
+	"editor.tabSize": 2,
+	"editor.wordWrap": "on",
+	"editor.detectIndentation": false
+}
