@@ -50,7 +50,8 @@ class Register extends Component {
 							<form noValidate onSubmit={this.onSubmit}>
 								<div className="form-group">
 									<input
-										type="text"
+                    type="text"
+                    // * Todo research how to replace this bootstrap class
 										className="form-control form-control-lg"
 										placeholder="Name"
 										name="name"
