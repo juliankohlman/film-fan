@@ -62,17 +62,13 @@ class Register extends Component {
 								<div className="form-group">
 									<input
 										type="email"
-										className={classnames('form-control form-control-lg', {
-											'is-invalid': errors.email
-										})}
+										className="form-control form-control-lg"
 										placeholder="Email Address"
 										name="email"
 										value={this.state.email}
 										onChange={this.onChange}
 									/>
-									{errors.email && (
-										<div className="invalid-feedback">{errors.email}</div>
-									)}
+
 									<small className="form-text text-muted">
 										This site uses Gravatar so if you want a profile image, use
 										a Gravatar email
@@ -81,32 +77,22 @@ class Register extends Component {
 								<div className="form-group">
 									<input
 										type="password"
-										className={classnames('form-control form-control-lg', {
-											'is-invalid': errors.password
-										})}
+										className="form-control form-control-lg"
 										placeholder="Password"
 										name="password"
 										value={this.state.password}
 										onChange={this.onChange}
 									/>
-									{errors.password && (
-										<div className="invalid-feedback">{errors.password}</div>
-									)}
 								</div>
 								<div className="form-group">
 									<input
 										type="password2"
-										className={classnames('form-control form-control-lg', {
-											'is-invalid': errors.password2
-										})}
+										className="form-control form-control-lg"
 										placeholder="Confirm Password"
 										name="password2"
 										value={this.state.password2}
 										onChange={this.onChange}
 									/>
-									{errors.password2 && (
-										<div className="invalid-feedback">{errors.password2}</div>
-									)}
 								</div>
 								<input type="submit" className="btn btn-info btn-block mt-4" />
 							</form>
