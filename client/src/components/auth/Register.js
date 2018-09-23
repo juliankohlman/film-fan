@@ -39,7 +39,7 @@ class Register extends Component {
 	render() {
 		// access pull errors state from state object
 		const { errors } = this.state;
-
+		// REPLACE BOOTSTRAP CLASSES
 		return (
 			<div className="register">
 				<div className="container">
@@ -50,8 +50,8 @@ class Register extends Component {
 							<form noValidate onSubmit={this.onSubmit}>
 								<div className="form-group">
 									<input
-                    type="text"
-                    // * Todo research how to replace this bootstrap class
+										type="text"
+										// * Todo research how to replace this bootstrap class
 										className="form-control form-control-lg"
 										placeholder="Name"
 										name="name"
