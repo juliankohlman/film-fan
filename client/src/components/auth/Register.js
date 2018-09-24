@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import classnames from 'classnames';
 
 class Register extends Component {
 	constructor() {
@@ -42,12 +41,9 @@ class Register extends Component {
 
 	render() {
 		// access pull errors state from state object
-
 		const { errors } = this.state;
 		let msg = Object.values(errors);
-		console.log(msg);
 
-		// REPLACE BOOTSTRAP CLASSES
 		return (
 			<div className="register">
 				<div className="container">
@@ -76,13 +72,19 @@ class Register extends Component {
 								<div className="form-group">
 									<input
 										type="email"
-										className="form-control form-control-lg"
+										className={
+											msg[0] && msg[0].email
+												? 'form-control form-control-lg is-invalid'
+												: 'form-control form-control-lg'
+										}
 										placeholder="Email Address"
 										name="email"
 										value={this.state.email}
 										onChange={this.onChange}
 									/>
-
+									<div className="invalid-feedback">
+										{msg[0] && msg[0].email ? msg[0].email : null}
+									</div>
 									<small className="form-text text-muted">
 										This site uses Gravatar so if you want a profile image, use
 										a Gravatar email
@@ -91,22 +93,36 @@ class Register extends Component {
 								<div className="form-group">
 									<input
 										type="password"
-										className="form-control form-control-lg"
+										className={
+											msg[0] && msg[0].password
+												? 'form-control form-control-lg is-invalid'
+												: 'form-control form-control-lg'
+										}
 										placeholder="Password"
 										name="password"
 										value={this.state.password}
 										onChange={this.onChange}
 									/>
+									<div className="invalid-feedback">
+										{msg[0] && msg[0].password ? msg[0].password : null}
+									</div>
 								</div>
 								<div className="form-group">
 									<input
 										type="password2"
-										className="form-control form-control-lg"
+										className={
+											msg[0] && msg[0].password2
+												? 'form-control form-control-lg is-invalid'
+												: 'form-control form-control-lg'
+										}
 										placeholder="Confirm Password"
 										name="password2"
 										value={this.state.password2}
 										onChange={this.onChange}
 									/>
+									<div className="invalid-feedback">
+										{msg[0] && msg[0].password2 ? msg[0].password2 : null}
+									</div>
 								</div>
 								<input type="submit" className="btn btn-info btn-block mt-4" />
 							</form>
