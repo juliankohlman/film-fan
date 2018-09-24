@@ -32,14 +32,16 @@ class Register extends Component {
 		};
 		// make axios request to register user from front-end
 		// gets replaced w/redux action dispatches
-		axios
-			.post('/api/users/register', newUser)
-			.then(res => console.log(res.data))
-			.catch(err =>
-				this.setState({
-					errors: err.response.data
-				})
-			);
+
+		this.props.registerUser(newUser);
+		// axios
+		// 	.post('/api/users/register', newUser)
+		// 	.then(res => console.log(res.data))
+		// 	.catch(err =>
+		// 		this.setState({
+		// 			errors: err.response.data
+		// 		})
+		// 	);
 	}
 
 	render() {
