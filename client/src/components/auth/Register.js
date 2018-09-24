@@ -33,12 +33,20 @@ class Register extends Component {
 		axios
 			.post('/api/users/register', newUser)
 			.then(res => console.log(res.data))
-			.catch(err => this.setState({ errors: err.response.data }));
+			.catch(err =>
+				this.setState({
+					errors: err.response.data
+				})
+			);
 	}
 
 	render() {
 		// access pull errors state from state object
+
 		const { errors } = this.state;
+		let msg = Object.values(errors);
+		console.log(msg);
+
 		// REPLACE BOOTSTRAP CLASSES
 		return (
 			<div className="register">
@@ -51,13 +59,19 @@ class Register extends Component {
 								<div className="form-group">
 									<input
 										type="text"
-										// * Todo research how to replace this bootstrap class
-										className="form-control form-control-lg"
+										className={
+											msg[0] && msg[0].name
+												? 'form-control form-control-lg is-invalid'
+												: 'form-control form-control-lg'
+										}
 										placeholder="Name"
 										name="name"
 										value={this.state.name}
 										onChange={this.onChange}
 									/>
+									<div className="invalid-feedback">
+										{msg[0] && msg[0].name ? msg[0].name : null}
+									</div>
 								</div>
 								<div className="form-group">
 									<input
