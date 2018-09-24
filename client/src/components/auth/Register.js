@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { registerUser } from '../../actions/auth';
 import axios from 'axios';
 
 class Register extends Component {
@@ -29,6 +31,7 @@ class Register extends Component {
 			password2: this.state.password2
 		};
 		// make axios request to register user from front-end
+		// gets replaced w/redux action dispatches
 		axios
 			.post('/api/users/register', newUser)
 			.then(res => console.log(res.data))
