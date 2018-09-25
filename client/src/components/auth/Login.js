@@ -14,7 +14,7 @@ class Login extends Component {
 		this.onSubmit = this.onSubmit.bind(this);
 	}
 
-	onChange = e => {
+	handleChange = e => {
 		this.setState({ [e.target.name]: e.target.value });
 	};
 
@@ -44,7 +44,7 @@ class Login extends Component {
 										placeholder="Email Address"
 										name="email"
 										value={this.state.email}
-										onChange={this.onChange}
+										onChange={this.handleChange}
 									/>
 								</div>
 								<div className="form-group">
@@ -54,7 +54,7 @@ class Login extends Component {
 										placeholder="Password"
 										name="password"
 										value={this.state.password}
-										onChange={this.onChange}
+										onChange={this.handleChange}
 									/>
 								</div>
 								<input type="submit" className="btn btn-info btn-block mt-4" />
