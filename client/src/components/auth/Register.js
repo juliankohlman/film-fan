@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { registerUser } from '../../actions/auth';
-import axios from 'axios';
 
 class Register extends Component {
 	constructor() {
@@ -16,6 +16,14 @@ class Register extends Component {
 
 		// example binding within constructor
 		this.onSubmit = this.onSubmit.bind(this);
+	}
+
+	componentWillReceiveProps(nextProps) {
+		if (nextProps.errors) {
+			this.setState({
+				errors: nextProps.errors
+			});
+		}
 	}
 
 	onChange = e => {
@@ -33,7 +41,8 @@ class Register extends Component {
 		// make axios request to register user from front-end
 		// gets replaced w/redux action dispatches
 
-		this.props.registerUser(newUser);
+		// redirect from with registerUser action
+		this.props.registerUser(newUser, this.props.history);
 		// axios
 		// 	.post('/api/users/register', newUser)
 		// 	.then(res => console.log(res.data))
@@ -114,7 +123,7 @@ class Register extends Component {
 								</div>
 								<div className="form-group">
 									<input
-										type="password2"
+										type="password"
 										className={
 											msg[0] && msg[0].password2
 												? 'form-control form-control-lg is-invalid'
@@ -139,4 +148,12 @@ class Register extends Component {
 	}
 }
 
-export default Register;
+const mapStateToProps = state => ({
+	auth: state.auth,
+	errors: state.errors
+});
+
+export default connect(
+	mapStateToProps,
+	{ registerUser }
+)(withRouter(Register));
