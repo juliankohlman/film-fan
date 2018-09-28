@@ -27,7 +27,7 @@ export const loginUser = userData => dispatch => {
 			setAuthToken(token);
 			// access user data from token
 			const userCredentials = jwt_decode(token);
-			dispatch(setUser(userCredentials));
+			dispatch(setCurrentUser(userCredentials));
 		})
 		.catch(err =>
 			dispatch({
@@ -37,7 +37,7 @@ export const loginUser = userData => dispatch => {
 		);
 };
 
-export const setUser = userCredentials => {
+export const setCurrentUser = userCredentials => {
 	return {
 		type: SET_CURRENT_USER,
 		payload: userCredentials
