@@ -34,16 +34,18 @@ class Login extends Component {
 	onSubmit(e) {
 		e.preventDefault();
 
-		const newUser = {
+		const userData = {
 			email: this.state.email,
 			password: this.state.password
 		};
-		console.log(newUser);
+
+		this.props.loginUser(userData);
 	}
 
 	render() {
 		const { errors } = this.state;
 		let msg = Object.values(errors);
+		console.log('msg: ', msg);
 
 		return (
 			<div className="login">
@@ -57,7 +59,7 @@ class Login extends Component {
 									<input
 										type="email"
 										className={
-											msg[0] && msg[0].email
+											msg.length > 0
 												? 'form-control form-control-lg is-invalid'
 												: 'form-control form-control-lg'
 										}
@@ -74,7 +76,7 @@ class Login extends Component {
 									<input
 										type="password"
 										className={
-											msg[0] && msg[0].password
+											msg.length > 0
 												? 'form-control form-control-lg is-invalid'
 												: 'form-control form-control-lg'
 										}
@@ -84,7 +86,11 @@ class Login extends Component {
 										onChange={this.handleChange}
 									/>
 									<div className="invalid-feedback">
-										{msg[0] && msg[0].password ? msg[0].password : null}
+										{typeof msg[0] === 'string'
+											? msg[0]
+											: typeof msg[0] === 'object'
+												? msg[0].password
+												: null}
 									</div>
 								</div>
 								<input type="submit" className="btn btn-info btn-block mt-4" />
