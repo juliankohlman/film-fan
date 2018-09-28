@@ -6,6 +6,7 @@ const initState = {
 	user: {}
 };
 
+// * Todo add notes on reducers/actions:action creators/async actions (thunks)
 export default (state = initState, action) => {
 	switch (action.type) {
 		case SET_CURRENT_USER:
