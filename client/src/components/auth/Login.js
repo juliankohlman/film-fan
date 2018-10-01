@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { loginUser } from '../../actions/auth';
+import TextFieldGroup from '../helpers/TextFieldGroup';
 
 class Login extends Component {
 	constructor() {
@@ -59,7 +60,14 @@ class Login extends Component {
 							<h1 className="display-4 text-center">Log In</h1>
 							<p className="lead text-center">Log in to your FilmFan account</p>
 							<form onSubmit={this.onSubmit}>
-								<div className="form-group">
+								<TextFieldGroup
+									placeholder="Email Address"
+									name="Email"
+									type="Email"
+									value={this.state.email}
+									onChange={this.handleChange}
+								/>
+								{/* <div className="form-group">
 									<input
 										type="email"
 										className={
@@ -75,7 +83,8 @@ class Login extends Component {
 									<div className="invalid-feedback">
 										{msg[0] && msg[0].email ? msg[0].email : null}
 									</div>
-								</div>
+                </div> */}
+
 								<div className="form-group">
 									<input
 										type="password"
