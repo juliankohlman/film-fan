@@ -9,7 +9,8 @@ const TextFieldGroup = ({
 	info,
 	type,
 	onChange,
-	disabled
+	disabled,
+	msg
 }) => {
 	return (
 		<div className="form-group">
@@ -28,7 +29,7 @@ const TextFieldGroup = ({
 			/>
 			{info && <small className="form-text text-muted">{info}</small>}
 			<div className="invalid-feedback">
-				{msg[0] && msg[0].name ? msg[0].name : null}
+				{msg[0] && msg[0][name] ? msg[0][name] : null}
 			</div>
 		</div>
 	);

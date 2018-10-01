@@ -61,11 +61,12 @@ class Login extends Component {
 							<p className="lead text-center">Log in to your FilmFan account</p>
 							<form onSubmit={this.onSubmit}>
 								<TextFieldGroup
+									type="email"
 									placeholder="Email Address"
-									name="Email"
-									type="Email"
+									name="email"
 									value={this.state.email}
 									onChange={this.handleChange}
+									msg={msg}
 								/>
 								{/* <div className="form-group">
 									<input
