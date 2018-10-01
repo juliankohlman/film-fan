@@ -27,6 +27,7 @@ export const loginUser = userData => dispatch => {
 			setAuthToken(token);
 			// access user data from token
 			const userCredentials = jwt_decode(token);
+			// send setCurrentUser action to store and update App's state
 			dispatch(setCurrentUser(userCredentials));
 		})
 		.catch(err =>
