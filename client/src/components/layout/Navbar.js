@@ -4,28 +4,35 @@ import { connect } from 'react-redux';
 import { logoutUser } from '../../actions/auth';
 
 class Navbar extends Component {
-	handleLogout = e => {
+	handleLogout(e) {
 		e.preventDefault();
 		this.props.logoutUser();
-	};
+	}
 
 	render() {
 		const { isAuthenticated, user } = this.props.auth;
 		const authLinks = (
 			<ul className="navbar-nav ml-auto">
 				<li className="nav-item">
-					<Link className="nav-link">
+					<li className="nav-link">
 						<a
 							href="#"
-							onClick={this.onLogoutClick.bind(this)}
+							onClick={this.handleLogout.bind(this)}
 							className="nav-link"
-						/>
-					</Link>
-				</li>
-				<li className="nav-item">
-					<Link className="nav-link" to="/login">
-						Login
-					</Link>
+						>
+							<img
+								className="rounded-circle"
+								src={user.avatar}
+								alt={user.name}
+								title="Connect a gravatar to your email to display"
+								style={{
+									width: '25px',
+									marginRight: '7px'
+								}}
+							/>
+							Logout
+						</a>
+					</li>
 				</li>
 			</ul>
 		);
@@ -84,4 +91,4 @@ const mapStateToProps = state => ({
 export default connect(
 	mapStateToProps,
 	{ logoutUser }
-)(NavBar);
+)(Navbar);
