@@ -38,9 +38,20 @@ export const loginUser = userData => dispatch => {
 		);
 };
 
+// Logged in user set
 export const setCurrentUser = userCredentials => {
 	return {
 		type: SET_CURRENT_USER,
 		payload: userCredentials
 	};
+};
+
+// Log out a user
+export const logoutUser = () => dispatch => {
+	// destroy token from localstorage
+	localStorage.removeItem('jwt');
+	// remove auth header from any request that follow
+	setAuthToken(false);
+	// Clear the current user and make isAuthenticated === false
+	dispatch(setCurrentUser({}));
 };
