@@ -85,8 +85,15 @@ class Login extends Component {
 										{msg[0] && msg[0].email ? msg[0].email : null}
 									</div>
                 </div> */}
-
-								<div className="form-group">
+								<TextFieldGroup
+									type="password"
+									placeholder="Password"
+									name="password"
+									value={this.state.password}
+									onChange={this.handleChange}
+									msg={msg}
+								/>
+								{/* <div className="form-group">
 									<input
 										type="password"
 										className={
@@ -106,7 +113,7 @@ class Login extends Component {
 												? msg[0].password
 												: null}
 									</div>
-								</div>
+								</div> */}
 								<input type="submit" className="btn btn-info btn-block mt-4" />
 							</form>
 						</div>
