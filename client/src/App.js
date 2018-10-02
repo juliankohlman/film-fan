@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import configureStore from './store/configureStore';
 import jwt_decode from 'jwt-decode';
 import setAuthToken from './Utils/setAuthToken';
 import { setCurrentUser, logoutUser } from './actions/auth';
 
+import PrivateRoute from './components/helpers/PrivateRoute';
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
 import Landing from './components/layout/Landing';
@@ -15,6 +16,7 @@ import Dashboard from './components/dashboard/Dashboard';
 
 import './App.css';
 import { clearProfile } from './actions/profile';
+import { CreateProfile } from './components/profile/CreateProfile';
 // import { decode } from 'iconv-lite';
 const store = configureStore();
 
@@ -49,7 +51,14 @@ class App extends Component {
 						<div className="container">
 							<Route exact path="/register" component={Register} />
 							<Route exact path="/login" component={Login} />
-							<Route exact path="/dashboard" component={Dashboard} />
+							<Switch>
+								<PrivateRoute exact path="/dashboard" component={Dashboard} />
+								<PrivateRoute
+									exact
+									path="/create-profile"
+									component={CreateProfile}
+								/>
+							</Switch>
 						</div>
 						<Footer />
 					</div>
