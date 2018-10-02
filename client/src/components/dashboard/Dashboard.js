@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
+import Loading from '../helpers/Loading';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getProfile } from '../../actions/profile';
-import Loading from '../helpers/Loading';
 
 class Dashboard extends Component {
 	// immediately get the profile
@@ -18,7 +19,20 @@ class Dashboard extends Component {
 		if (profile === null || loading) {
 			dashboardData = <Loading />;
 		} else {
-			dashboardData = <h1>Your Dashboard information</h1>;
+			// does user have a profile?
+			if (!!Object.entries(user)) {
+				dashboardData = <h1>DISPLAY PROFILE DATA</h1>;
+			} else {
+				dashboardData = (
+					<div>
+						<p className="lead text-muted">Welcome {user.name}</p>{' '}
+						<p>Let's get started on your profile with some info!</p>
+						<Link to="/create-profile" className="btn btn-lg btn-info">
+							Create Profile
+						</Link>
+					</div>
+				);
+			}
 		}
 
 		return (
