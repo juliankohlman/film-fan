@@ -68,23 +68,7 @@ class Login extends Component {
 									onChange={this.handleChange}
 									msg={msg}
 								/>
-								{/* <div className="form-group">
-									<input
-										type="email"
-										className={
-											msg.length > 0
-												? 'form-control form-control-lg is-invalid'
-												: 'form-control form-control-lg'
-										}
-										placeholder="Email Address"
-										name="email"
-										value={this.state.email}
-										onChange={this.handleChange}
-									/>
-									<div className="invalid-feedback">
-										{msg[0] && msg[0].email ? msg[0].email : null}
-									</div>
-                </div> */}
+
 								<TextFieldGroup
 									type="password"
 									placeholder="Password"
@@ -93,27 +77,7 @@ class Login extends Component {
 									onChange={this.handleChange}
 									msg={msg}
 								/>
-								{/* <div className="form-group">
-									<input
-										type="password"
-										className={
-											msg.length > 0
-												? 'form-control form-control-lg is-invalid'
-												: 'form-control form-control-lg'
-										}
-										placeholder="Password"
-										name="password"
-										value={this.state.password}
-										onChange={this.handleChange}
-									/>
-									<div className="invalid-feedback">
-										{typeof msg[0] === 'string'
-											? msg[0]
-											: typeof msg[0] === 'object'
-												? msg[0].password
-												: null}
-									</div>
-								</div> */}
+
 								<input type="submit" className="btn btn-info btn-block mt-4" />
 							</form>
 						</div>
