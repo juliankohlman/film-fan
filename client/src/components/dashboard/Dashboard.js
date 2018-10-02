@@ -20,8 +20,8 @@ class Dashboard extends Component {
 			dashboardData = <Loading />;
 		} else {
 			// does user have a profile?
-			if (!!Object.entries(user)) {
-				dashboardData = <h1>DISPLAY PROFILE DATA</h1>;
+			if (!!Object.entries(profile).length) {
+				dashboardData = <h4>DISPLAY PROFILE DATA</h4>;
 			} else {
 				dashboardData = (
 					<div>

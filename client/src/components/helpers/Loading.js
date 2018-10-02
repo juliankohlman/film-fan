@@ -2,10 +2,7 @@ import React from 'react';
 import loader from './loader.gif';
 
 const Loading = () => (
-	<div
-		className="loader-container"
-		style={{ background: '#f9f9f9', height: '100vh' }}
-	>
+	<div className="loader-container" style={{ height: '100vh' }}>
 		<div
 			className="loader"
 			style={{
