@@ -1,11 +1,18 @@
 import axios from 'axios';
 
-import { GET_PROFILE, PROFILE_LOADING, GET_ERRORS } from './types';
+import { GET_PROFILE, PROFILE_LOADING, CLEAR_CURRENT_PROFILE } from './types';
 
 // Profile loading
 export const profileLoadingStatus = () => {
 	return {
 		type: PROFILE_LOADING
+	};
+};
+
+// Clear profile
+export const clearProfile = () => {
+	return {
+		type: CLEAR_CURRENT_PROFILE
 	};
 };
 
