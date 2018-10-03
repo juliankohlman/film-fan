@@ -10,7 +10,6 @@ class CreateProfile extends Component {
 		super(props);
 
 		this.state = {
-			displaySocialInputs: false,
 			handle: '',
 			company: '',
 			website: '',
@@ -37,7 +36,40 @@ class CreateProfile extends Component {
 	};
 
 	render() {
-		const { errors } = this.state;
+		const { errors, displaySocialInputs } = this.state;
+
+		let socialInputs;
+
+		if (displaySocialInputs) {
+			socialInputs = (
+				<div>
+					<InputGroup
+						placeholder="Twitter Page URL"
+						name="twitter"
+						icon="fab fa-twitter"
+						value={this.state.twitter}
+						onChange={this.onChange}
+						error={errors.twitter}
+					/>
+					<InputGroup
+						placeholder="Facebook Page URL"
+						name="facebook"
+						icon="fab fa-facebook"
+						value={this.state.facebook}
+						onChange={this.onChange}
+						error={errors.facebook}
+					/>
+					<InputGroup
+						placeholder="YouTube Page URL"
+						name="youtube"
+						icon="fab fa-youtube"
+						value={this.state.youtube}
+						onChange={this.onChange}
+						error={errors.youtube}
+					/>
+				</div>
+			);
+		}
 
 		// Status options for selector
 		const options = [
@@ -90,6 +122,57 @@ class CreateProfile extends Component {
 									error={errors.genre}
 									options={options}
 									info="What's your favorite film genre?"
+								/>
+								<TextFieldGroup
+									placeholder="Company"
+									name="company"
+									value={this.state.company}
+									onChange={this.onChange}
+									error={errors.company}
+									info="Company you work for or run."
+								/>
+								<TextFieldGroup
+									placeholder="Website"
+									name="website"
+									value={this.state.website}
+									onChange={this.onChange}
+									error={errors.website}
+									info="Your personal film website or blog"
+								/>
+								<TextFieldGroup
+									placeholder="Skills"
+									name="skills"
+									value={this.state.skills}
+									onChange={this.onChange}
+									error={errors.skills}
+									info="Please use comma separated values (eg. One, Two, Three, Four"
+								/>
+								<TextAreaGroup
+									placeholder="Bio"
+									name="bio"
+									value={this.state.bio}
+									onChange={this.onChange}
+									error={errors.bio}
+									info="A short bio about yourself, and your love of films."
+								/>
+								<div className="mb-3">
+									<button
+										onClick={() => {
+											this.setState(prevState => ({
+												displaySocialInputs: !prevState.displaySocialInputs
+											}));
+										}}
+										className="btn btn-light"
+									>
+										Add Social Network Links
+									</button>
+									<span className="text-muted">Optional</span>
+								</div>
+								{socialInputs}
+								<input
+									type="submit"
+									value="Submit"
+									className="btn btn-info btn-block mt-4"
 								/>
 							</form>
 						</div>
