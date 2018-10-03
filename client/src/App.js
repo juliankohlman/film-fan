@@ -16,7 +16,7 @@ import Dashboard from './components/dashboard/Dashboard';
 
 import './App.css';
 import { clearProfile } from './actions/profile';
-import { CreateProfile } from './components/profile/CreateProfile';
+import CreateProfile from './components/profile/CreateProfile';
 // import { decode } from 'iconv-lite';
 const store = configureStore();
 

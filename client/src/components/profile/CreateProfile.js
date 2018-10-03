@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { TextFieldGroup } from '../helpers/TextFieldGroup';
+import TextFieldGroup from '../helpers/TextFieldGroup';
+import TextAreaGroup from '../helpers/TextAreaGroup';
+import SelectGroup from '../helpers/SelectGroup';
+import InputGroup from '../helpers/InputGroup';
 
-export class CreateProfile extends Component {
+class CreateProfile extends Component {
 	constructor(props) {
 		super(props);
 
@@ -22,7 +25,20 @@ export class CreateProfile extends Component {
 		};
 	}
 
+	onChange = e => {
+		this.setState({
+			[e.target.name]: e.target.value
+		});
+	};
+
+	onSubmit = e => {
+		e.preventDefault();
+		console.log('submit');
+	};
+
 	render() {
+		const { errors } = this.state;
+
 		return (
 			<div className="create-profile">
 				<div className="container">
@@ -33,6 +49,16 @@ export class CreateProfile extends Component {
 								Add Information to complete your profile
 							</p>
 							<small className="d-block pb-3">* = required fields</small>
+							<form onSubmit={this.onSubmit}>
+								<TextFieldGroup
+									placeholder="* Profile Handle"
+									name="handle"
+									value={this.state.handle}
+									onChange={this.onChange}
+									error={errors.handle}
+									info="A unique handle for your profile URL. Add your full name, company name, and nickname"
+								/>
+							</form>
 						</div>
 					</div>
 				</div>
@@ -46,7 +72,4 @@ const mapStateToProps = state => ({
 	errors: state.errors
 });
 
-export default connect(
-	mapStateToProps,
-	{}
-)(CreateProfile);
+export default connect(mapStateToProps)(CreateProfile);
