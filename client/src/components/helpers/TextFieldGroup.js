@@ -4,18 +4,20 @@ const TextFieldGroup = ({
 	name,
 	placeholder,
 	value,
+	label,
+	error,
 	info,
 	type,
-	error,
 	onChange,
 	disabled
 }) => {
+	console.log(error);
 	return (
 		<div className="form-group">
 			<input
 				type={type}
 				className={
-					error.length > 0
+					error
 						? 'form-control form-control-lg is-invalid'
 						: 'form-control form-control-lg'
 				}
@@ -26,13 +28,13 @@ const TextFieldGroup = ({
 				disabled={disabled}
 			/>
 			{info && <small className="form-text text-muted">{info}</small>}
-			<div className="invalid-feedback">
+			{/* <div className="invalid-feedback">
 				{typeof error[0] === 'string'
 					? error[0]
 					: typeof error[0] === 'object'
 						? error[0][name]
 						: null}
-			</div>
+			</div> */}
 		</div>
 	);
 };

@@ -14,7 +14,7 @@ class CreateProfile extends Component {
 			handle: '',
 			company: '',
 			website: '',
-			status: '',
+			genre: '',
 			bio: '',
 			twitter: '',
 			facebook: '',
@@ -39,6 +39,30 @@ class CreateProfile extends Component {
 	render() {
 		const { errors } = this.state;
 
+		// Status options for selector
+		const options = [
+			{ label: '* Favorite Film Genre', value: 0 },
+			{ label: 'Action & Adventure', value: 'Action & Adventure' },
+			{ label: 'Comedy', value: 'Comedy' },
+			{ label: 'Crime', value: 'Crime' },
+			{ label: 'Documentary', value: 'Documentary' },
+			{ label: 'Drama', value: 'Drama' },
+			{ label: 'Fantasy', value: 'Fantasy' },
+			{ label: 'History', value: 'History' },
+			{ label: 'Horror', value: 'Horror' },
+			{ label: 'Kids & Family', value: 'Kids & Family' },
+			{ label: 'Music & Musical', value: 'Music & Musical' },
+			{ label: 'Mystery & Thriller', value: 'Mystery & Thriller' },
+			{ label: 'Romance', value: 'Romance' },
+			{ label: 'Science-Fiction', value: 'Science-Fiction' },
+			{ label: 'War & Military', value: 'War & Military' },
+			{ label: 'Western', value: 'Western' },
+			{ label: 'Sports', value: 'Sports' },
+			{ label: 'Cult classics', value: 'Cult classics' },
+			{ label: 'B-Movies', value: 'B-Movies' },
+			{ label: 'Other', value: 'Other' }
+		];
+
 		return (
 			<div className="create-profile">
 				<div className="container">
@@ -57,6 +81,15 @@ class CreateProfile extends Component {
 									onChange={this.onChange}
 									error={errors.handle}
 									info="A unique handle for your profile URL. Add your full name, company name, and nickname"
+								/>
+								<SelectGroup
+									placeholder="Favorite Genre..."
+									name="genre"
+									value={this.state.genre}
+									onChange={this.onChange}
+									error={errors.genre}
+									options={options}
+									info="What's your favorite film genre?"
 								/>
 							</form>
 						</div>

@@ -18,7 +18,7 @@ const SelectGroup = ({
 		<div className="form-group">
 			<select
 				className={
-					msg.length > 0
+					error
 						? 'form-control form-control-lg is-invalid'
 						: 'form-control form-control-lg'
 				}
@@ -29,15 +29,17 @@ const SelectGroup = ({
 				{selectOptions}
 			</select>
 			{info && <small className="form-text text-muted">{info}</small>}
-			<div className="invalid-feedback">
+			{/* <div className="invalid-feedback">
 				{typeof msg[0] === 'string'
 					? msg[0]
 					: typeof msg[0] === 'object'
 						? msg[0][name]
 						: null}
-			</div>
+			</div> */}
 		</div>
 	);
 };
+
+// ! Add Proptypes to all input helper components
 
 export default SelectGroup;
