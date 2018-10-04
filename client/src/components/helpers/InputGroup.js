@@ -16,7 +16,7 @@ const InputGroup = ({
 					<i className={icon} />
 				</span>
 			</div>
-			<textarea
+			<input
 				className={
 					error
 						? 'form-control form-control-lg is-invalid'
