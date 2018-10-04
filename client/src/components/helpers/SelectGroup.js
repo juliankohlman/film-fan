@@ -1,19 +1,14 @@
 import React from 'react';
 
-const SelectGroup = ({
-	name,
-	value,
-	error,
-	info,
-	onChange,
-	options, // array of options
-	msg
-}) => {
+const SelectGroup = ({ name, value, error, info, onChange, options }) => {
 	const selectOptions = options.map(option => (
 		<option key={option.label} value={option.value}>
 			{option.label}
 		</option>
 	));
+
+	console.log('Select group', error);
+
 	return (
 		<div className="form-group">
 			<select
@@ -29,13 +24,7 @@ const SelectGroup = ({
 				{selectOptions}
 			</select>
 			{info && <small className="form-text text-muted">{info}</small>}
-			{/* <div className="invalid-feedback">
-				{typeof msg[0] === 'string'
-					? msg[0]
-					: typeof msg[0] === 'object'
-						? msg[0][name]
-						: null}
-			</div> */}
+			<div className="invalid-feedback">{error}</div>
 		</div>
 	);
 };

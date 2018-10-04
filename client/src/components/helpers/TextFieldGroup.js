@@ -11,7 +11,7 @@ const TextFieldGroup = ({
 	onChange,
 	disabled
 }) => {
-	console.log(error);
+	console.log('Textfield', error);
 	return (
 		<div className="form-group">
 			<input
@@ -28,13 +28,7 @@ const TextFieldGroup = ({
 				disabled={disabled}
 			/>
 			{info && <small className="form-text text-muted">{info}</small>}
-			{/* <div className="invalid-feedback">
-				{typeof error[0] === 'string'
-					? error[0]
-					: typeof error[0] === 'object'
-						? error[0][name]
-						: null}
-			</div> */}
+			<div className="invalid-feedback">{error}</div>
 		</div>
 	);
 };

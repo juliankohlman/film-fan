@@ -28,13 +28,7 @@ const InputGroup = ({
 				onChange={onChange}
 			/>
 			{/* {info && <small className="form-text text-muted">{info}</small>} */}
-			{/* <div className="invalid-feedback">
-				{typeof msg[0] === 'string'
-					? msg[0]
-					: typeof msg[0] === 'object'
-						? msg[0][name]
-						: null}
-			</div> */}
+			<div className="invalid-feedback">{error}</div>
 		</div>
 	);
 };

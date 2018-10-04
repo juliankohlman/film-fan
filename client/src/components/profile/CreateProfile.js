@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import TextFieldGroup from '../helpers/TextFieldGroup';
 import TextAreaGroup from '../helpers/TextAreaGroup';
 import SelectGroup from '../helpers/SelectGroup';
 import InputGroup from '../helpers/InputGroup';
+import { createProfile } from '../../actions/profile';
 
 class CreateProfile extends Component {
 	constructor(props) {
@@ -14,14 +16,20 @@ class CreateProfile extends Component {
 			company: '',
 			website: '',
 			genre: '',
+			skills: '',
 			bio: '',
 			twitter: '',
 			facebook: '',
-			linkedin: '',
 			youtube: '',
 			instagram: '',
 			errors: {}
 		};
+	}
+
+	static getDerivedStateFromProps(nextProps) {
+		if (nextProps.errors) {
+			return { errors: nextProps.errors };
+		}
 	}
 
 	onChange = e => {
@@ -32,7 +40,23 @@ class CreateProfile extends Component {
 
 	onSubmit = e => {
 		e.preventDefault();
-		console.log('submit');
+		// Call redux action from profile actions
+
+		const profileData = {
+			handle: this.state.handle,
+			company: this.state.company,
+			website: this.state.website,
+			genre: this.state.genre,
+			skills: this.state.skills,
+			bio: this.state.bio,
+			twitter: this.state.twitter,
+			facebook: this.state.facebook,
+			youtube: this.state.youtube,
+			instagram: this.state.instagram
+		};
+
+		// * accessing createProfile redux action via props
+		this.props.createProfile(profileData, this.props.history);
 	};
 
 	render() {
@@ -115,7 +139,7 @@ class CreateProfile extends Component {
 									info="A unique handle for your profile URL. Add your full name, company name, and nickname"
 								/>
 								<SelectGroup
-									placeholder="Favorite Genre..."
+									placeholder="* Select Favorite Genre"
 									name="genre"
 									value={this.state.genre}
 									onChange={this.onChange}
@@ -140,7 +164,7 @@ class CreateProfile extends Component {
 									info="Your personal film website or blog"
 								/>
 								<TextFieldGroup
-									placeholder="Skills"
+									placeholder="* Skills"
 									name="skills"
 									value={this.state.skills}
 									onChange={this.onChange}
@@ -188,4 +212,7 @@ const mapStateToProps = state => ({
 	errors: state.errors
 });
 
-export default connect(mapStateToProps)(CreateProfile);
+export default connect(
+	mapStateToProps,
+	{ createProfile }
+)(withRouter(CreateProfile));
