@@ -11,22 +11,20 @@ const ProfileSchema = new Schema({
 		required: true,
 		max: 40
 	},
-	job: {
+	company: {
 		type: String
 	},
 	website: {
 		type: String
 	},
-	location: {
-		type: String
-	},
-	status: {
-		//film student, reviewer, fan, etc...
+
+	genre: {
+		// favorite film genre
 		type: String,
 		required: true
 	},
-	genres: {
-		//favorite genres
+	skills: {
+		// skills
 		type: [String],
 		required: true
 	},

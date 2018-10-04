@@ -81,8 +81,7 @@ router.get('/handle/:handle', (req, res) => {
 		.populate('user', ['name', 'avatar'])
 		.then(profile => {
 			if (!profile) {
-				errors.noprofile =
-					'Cannot find a Profile for the given user handle.';
+				errors.noprofile = 'Cannot find a Profile for the given user handle.';
 				res.status(404).json(errors);
 			}
 			res.json(profile);
@@ -102,8 +101,7 @@ router.get('/user/:user_id', (req, res) => {
 		.populate('user', ['name', 'avatar'])
 		.then(profile => {
 			if (!profile) {
-				errors.noprofile =
-					'Cannot find a Profile for the given user id.';
+				errors.noprofile = 'Cannot find a Profile for the given user id.';
 				res.status(404).json(errors);
 			}
 			res.json(profile);
@@ -136,25 +134,22 @@ router.post(
 		profileFields.user = req.user.id;
 		// Field assignment from req.body information
 		if (req.body.handle) profileFields.handle = req.body.handle;
-		if (req.body.job) profileFields.job = req.body.job;
+		if (req.body.company) profileFields.company = req.body.company;
 		if (req.body.website) profileFields.website = req.body.website;
-		if (req.body.location) profileFields.location = req.body.location;
-		if (req.body.status) profileFields.status = req.body.status;
+		if (req.body.genre) profileFields.genre = req.body.genre;
 		if (req.body.bio) profileFields.bio = req.body.bio;
 		if (req.body.lboxdusername)
 			profileFields.lboxdusername = req.body.lboxdusername;
-		// Favorite Genres as an array
-		if (typeof req.body.genres !== 'undefined') {
-			profileFields.genres = req.body.genres.split(',');
+		// Skills
+		if (typeof req.body.skills !== 'undefined') {
+			profileFields.skills = req.body.skills.split(',');
 		}
 		// Social accounts
 		profileFields.social = {};
 		if (req.body.youtube) profileFields.social.youtube = req.body.youtube;
 		if (req.body.twitter) profileFields.social.twitter = req.body.twitter;
-		if (req.body.facebook)
-			profileFields.social.facebook = req.body.facebook;
-		if (req.body.instagram)
-			profileFields.social.instagram = req.body.instagram;
+		if (req.body.facebook) profileFields.social.facebook = req.body.facebook;
+		if (req.body.instagram) profileFields.social.instagram = req.body.instagram;
 
 		Profile.findOne({ user: req.user.id }).then(profile => {
 			if (profile) {
@@ -167,19 +162,14 @@ router.post(
 			} else {
 				// create new profile
 				// check for handle conflicts (handles must be unique)
-				Profile.findOne({ handle: profileFields.handle }).then(
-					profile => {
-						if (profile) {
-							errors.handle =
-								'Sorry that handle is already in use.';
-							res.status(400).json(errors);
-						}
-						// Handle is unique so profile can be saved
-						new Profile(profileFields)
-							.save()
-							.then(profile => res.json(profile));
+				Profile.findOne({ handle: profileFields.handle }).then(profile => {
+					if (profile) {
+						errors.handle = 'Sorry that handle is already in use.';
+						res.status(400).json(errors);
 					}
-				);
+					// Handle is unique so profile can be saved
+					new Profile(profileFields).save().then(profile => res.json(profile));
+				});
 			}
 		});
 	}
