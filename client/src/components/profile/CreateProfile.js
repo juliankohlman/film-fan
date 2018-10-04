@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
+import { createProfile } from '../../actions/profile';
 import TextFieldGroup from '../helpers/TextFieldGroup';
 import TextAreaGroup from '../helpers/TextAreaGroup';
 import SelectGroup from '../helpers/SelectGroup';
 import InputGroup from '../helpers/InputGroup';
-import { createProfile } from '../../actions/profile';
 
 class CreateProfile extends Component {
 	constructor(props) {
@@ -26,11 +26,19 @@ class CreateProfile extends Component {
 		};
 	}
 
-	static getDerivedStateFromProps(nextProps) {
+	static getDerivedStateFromProps = nextProps => {
 		if (nextProps.errors) {
 			return { errors: nextProps.errors };
 		}
-	}
+	};
+
+	// * method will be deprecated in future version of React
+	// componentWillReceiveProps = nextProps => {
+	// 	if (nextProps.errors)
+	// 		this.setState(() => ({
+	// 			errors: nextProps.errors
+	// 		}));
+	// };
 
 	onChange = e => {
 		this.setState({
@@ -44,9 +52,9 @@ class CreateProfile extends Component {
 
 		const profileData = {
 			handle: this.state.handle,
+			genre: this.state.genre,
 			company: this.state.company,
 			website: this.state.website,
-			genre: this.state.genre,
 			skills: this.state.skills,
 			bio: this.state.bio,
 			twitter: this.state.twitter,

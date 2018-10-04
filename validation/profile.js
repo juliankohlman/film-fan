@@ -5,23 +5,23 @@ module.exports = function validateProfileInput(data) {
 	let errors = {};
 	// Sanitize required profile inputs
 	data.handle = !isEmpty(data.handle) ? data.handle : '';
-	data.status = !isEmpty(data.status) ? data.status : '';
-	data.genres = !isEmpty(data.genres) ? data.genres : '';
+	data.genre = !isEmpty(data.genre) ? data.genre : '';
+	data.skills = !isEmpty(data.skills) ? data.skills : '';
 
 	if (!Validator.isLength(data.handle, { min: 2, max: 40 })) {
 		errors.handle = 'Handle should be between 2 and 40 characters';
 	}
 
 	if (Validator.isEmpty(data.handle)) {
-		errors.handle = 'Must enter a handle';
+		errors.handle = 'Profile handle is required';
 	}
 
-	if (Validator.isEmpty(data.status)) {
-		errors.status = 'Must enter a status';
+	if (Validator.isEmpty(data.genre)) {
+		errors.genre = 'Genre selection is required';
 	}
 
-	if (Validator.isEmpty(data.genres)) {
-		errors.genres = 'Must enter a genres';
+	if (Validator.isEmpty(data.skills)) {
+		errors.skills = 'Skills field is required';
 	}
 
 	if (!isEmpty(data.website)) {

@@ -7,7 +7,7 @@ const SelectGroup = ({ name, value, error, info, onChange, options }) => {
 		</option>
 	));
 
-	console.log('Select group', error);
+	console.log('Select group: ', error);
 
 	return (
 		<div className="form-group">
