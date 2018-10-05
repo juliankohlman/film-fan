@@ -4,8 +4,8 @@ import { loginUser } from '../../actions/auth';
 import TextFieldGroup from '../helpers/TextFieldGroup';
 
 class Login extends Component {
-	constructor() {
-		super();
+	constructor(props) {
+		super(props);
 
 		this.state = {
 			email: '',
@@ -25,18 +25,24 @@ class Login extends Component {
 		if (this.props.auth.isAuthenticated) this.props.history.push('/dashboard');
 	};
 
-	// ! replace with static getDerivedStateFromProp() method
-	componentWillReceiveProps(nextProps) {
+	static getDerivedStateFromProps = nextProps => {
 		if (nextProps.auth.isAuthenticated) {
-			this.props.history.push('/dashboard');
+			nextProps.history.push('/dashboard');
 		}
 
-		if (nextProps.errors) {
-			this.setState({
-				errors: nextProps.errors
-			});
-		}
-	}
+		if (nextProps.errors) return { errors: nextProps.errors };
+	};
+	// componentWillReceiveProps(nextProps) {
+	// 	if (nextProps.auth.isAuthenticated) {
+	// 		this.props.history.push('/dashboard');
+	// 	}
+
+	// 	if (nextProps.errors) {
+	// 		this.setState({
+	// 			errors: nextProps.errors
+	// 		});
+	// 	}
+	// }
 
 	onSubmit(e) {
 		e.preventDefault();

@@ -6,8 +6,8 @@ import { registerUser } from '../../actions/auth';
 import TextFieldGroup from '../helpers/TextFieldGroup';
 
 class Register extends Component {
-	constructor() {
-		super();
+	constructor(props) {
+		super(props);
 		this.state = {
 			name: '',
 			email: '',
@@ -27,11 +27,6 @@ class Register extends Component {
 		}
 	};
 
-	// componentWillReceiveProps(nextProps) {
-	// 	if (nextProps.errors) {
-	// 		this.setState({ errors: nextProps.errors });
-	// 	}
-	// }
 	static getDerivedStateFromProps = nextProps => {
 		return { errors: nextProps.errors };
 	};
