@@ -20,21 +20,21 @@ module.exports = function validateRegisterInput(data) {
 	}
 
 	// Email checks
-	if (!Validator.isEmail(data.email)) {
-		errors.email = 'Email given is not valid.';
-	}
-
 	if (Validator.isEmpty(data.email)) {
 		errors.email = 'Email field is required.';
 	}
 
-	// Password checks
-	if (!Validator.isLength(data.password, { min: 6, max: 30 })) {
-		errors.password = 'Password must be at least 6 characters long.';
+	if (!Validator.isEmail(data.email)) {
+		errors.email = 'Email given is not valid.';
 	}
 
+	// Password checks
 	if (Validator.isEmpty(data.password)) {
 		errors.password = 'Password field is required.';
+	}
+
+	if (!Validator.isLength(data.password, { min: 6, max: 30 })) {
+		errors.password = 'Password must be at least 6 characters long.';
 	}
 
 	if (Validator.isEmpty(data.password2)) {

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+// import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { registerUser } from '../../actions/auth';
@@ -16,52 +17,47 @@ class Register extends Component {
 		};
 
 		// example binding within constructor
+		this.onChange = this.onChange.bind(this);
 		this.onSubmit = this.onSubmit.bind(this);
 	}
 
 	componentDidMount = () => {
-		if (this.props.auth.isAuthenticated) this.props.history.push('/dashboard');
-	};
-
-	componentWillReceiveProps(nextProps) {
-		if (nextProps.errors) {
-			this.setState({
-				errors: nextProps.errors
-			});
+		if (this.props.auth.isAuthenticated) {
+			this.props.history.push('/dashboard');
 		}
-	}
-
-	handleChange = e => {
-		this.setState({ [e.target.name]: e.target.value });
 	};
+
+	// componentWillReceiveProps(nextProps) {
+	// 	if (nextProps.errors) {
+	// 		this.setState({ errors: nextProps.errors });
+	// 	}
+	// }
+	static getDerivedStateFromProps = nextProps => {
+		return { errors: nextProps.errors };
+	};
+
+	onChange(e) {
+		this.setState({ [e.target.name]: e.target.value });
+	}
 
 	onSubmit(e) {
 		e.preventDefault();
+
 		const newUser = {
 			name: this.state.name,
 			email: this.state.email,
 			password: this.state.password,
 			password2: this.state.password2
 		};
-		// make axios request to register user from front-end
-		// gets replaced w/redux action dispatches
 
 		// redirect from with registerUser action
 		this.props.registerUser(newUser, this.props.history);
-		// axios
-		// 	.post('/api/users/register', newUser)
-		// 	.then(res => console.log(res.data))
-		// 	.catch(err =>
-		// 		this.setState({
-		// 			errors: err.response.data
-		// 		})
-		// 	);
 	}
 
 	render() {
 		// access pull errors state from state object
 		const { errors } = this.state;
-		let msg = Object.values(errors);
+		// let msg = Object.values(errors);
 
 		return (
 			<div className="register">
@@ -72,20 +68,19 @@ class Register extends Component {
 							<p className="lead text-center">Create your FilmFan account</p>
 							<form noValidate onSubmit={this.onSubmit}>
 								<TextFieldGroup
-									type="name"
 									placeholder="Name"
 									name="name"
 									value={this.state.name}
-									onChange={this.handleChange}
-									msg={msg}
+									onChange={this.onChange}
+									error={errors.name}
 								/>
 								<TextFieldGroup
 									type="email"
 									placeholder="Email Address"
 									name="email"
 									value={this.state.email}
-									onChange={this.handleChange}
-									msg={msg}
+									onChange={this.onChange}
+									error={errors.email}
 									info="This site uses Gravatar please use a Gravatar linked email account to display your Gravatar. "
 								/>
 								<TextFieldGroup
@@ -93,16 +88,16 @@ class Register extends Component {
 									placeholder="Password"
 									name="password"
 									value={this.state.password}
-									onChange={this.handleChange}
-									msg={msg}
+									onChange={this.onChange}
+									error={errors.password}
 								/>
 								<TextFieldGroup
 									type="password"
 									placeholder="Confirm Password"
 									name="password2"
 									value={this.state.password2}
-									onChange={this.handleChange}
-									msg={msg}
+									onChange={this.onChange}
+									error={errors.password2}
 								/>
 								<input type="submit" className="btn btn-info btn-block mt-4" />
 							</form>
@@ -113,6 +108,12 @@ class Register extends Component {
 		);
 	}
 }
+
+// Register.propTypes = {
+// 	registerUser: PropTypes.func.isRequired,
+// 	auth: PropTypes.object.isRequired,
+// 	errors: PropTypes.object.isRequired
+// };
 
 const mapStateToProps = state => ({
 	auth: state.auth,

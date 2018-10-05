@@ -14,11 +14,12 @@ class Login extends Component {
 		};
 
 		this.onSubmit = this.onSubmit.bind(this);
+		this.handleChange = this.handleChange.bind(this);
 	}
 
-	handleChange = e => {
+	handleChange(e) {
 		this.setState({ [e.target.name]: e.target.value });
-	};
+	}
 
 	componentDidMount = () => {
 		if (this.props.auth.isAuthenticated) this.props.history.push('/dashboard');
@@ -50,8 +51,7 @@ class Login extends Component {
 
 	render() {
 		const { errors } = this.state;
-		let msg = Object.values(errors);
-		console.log('msg: ', msg);
+		console.log(errors);
 
 		return (
 			<div className="login">
@@ -67,7 +67,7 @@ class Login extends Component {
 									name="email"
 									value={this.state.email}
 									onChange={this.handleChange}
-									msg={msg}
+									error={errors.email}
 								/>
 
 								<TextFieldGroup
@@ -76,7 +76,7 @@ class Login extends Component {
 									name="password"
 									value={this.state.password}
 									onChange={this.handleChange}
-									msg={msg}
+									error={errors.password}
 								/>
 
 								<input type="submit" className="btn btn-info btn-block mt-4" />
