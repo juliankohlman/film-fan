@@ -32,17 +32,6 @@ class Login extends Component {
 
 		if (nextProps.errors) return { errors: nextProps.errors };
 	};
-	// componentWillReceiveProps(nextProps) {
-	// 	if (nextProps.auth.isAuthenticated) {
-	// 		this.props.history.push('/dashboard');
-	// 	}
-
-	// 	if (nextProps.errors) {
-	// 		this.setState({
-	// 			errors: nextProps.errors
-	// 		});
-	// 	}
-	// }
 
 	onSubmit(e) {
 		e.preventDefault();
