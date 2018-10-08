@@ -3,6 +3,7 @@ import Loading from '../helpers/Loading';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getProfile } from '../../actions/profile';
+import ProfileActions from './ProfileActions';
 
 class Dashboard extends Component {
 	// immediately get the profile
@@ -21,7 +22,14 @@ class Dashboard extends Component {
 		} else {
 			// does user have a profile?
 			if (!!Object.entries(profile).length) {
-				dashboardData = <h4>DISPLAY PROFILE DATA</h4>;
+				dashboardData = (
+					<div>
+						<p className="lead text-muted">
+							Welcome <Link to={`/profile/${profile.handle}`}>{user.name}</Link>
+						</p>
+						<ProfileActions />
+					</div>
+				);
 			} else {
 				dashboardData = (
 					<div>
