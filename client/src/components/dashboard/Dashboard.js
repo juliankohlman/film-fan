@@ -35,7 +35,9 @@ class Dashboard extends Component {
 						{/* Add exp and education??? */}
 						<div style={{ marginBottom: '60px' }}>
 							{' '}
-							<button onclick={this.onDeleteClick} className="btn btn-danger" />
+							<button onClick={this.onDeleteClick} className="btn btn-danger">
+								DELETE ACCOUNT
+							</button>
 						</div>
 					</div>
 				);
