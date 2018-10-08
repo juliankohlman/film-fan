@@ -2,13 +2,17 @@ import React, { Component } from 'react';
 import Loading from '../helpers/Loading';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { getProfile } from '../../actions/profile';
+import { getProfile, deleteAccount } from '../../actions/profile';
 import ProfileActions from './ProfileActions';
 
 class Dashboard extends Component {
 	// immediately get the profile
 	componentDidMount = () => {
 		this.props.getProfile();
+	};
+
+	onDeleteClick = e => {
+		this.props.deleteAccount();
 	};
 
 	render() {
@@ -28,6 +32,11 @@ class Dashboard extends Component {
 							Welcome <Link to={`/profile/${profile.handle}`}>{user.name}</Link>
 						</p>
 						<ProfileActions />
+						{/* Add exp and education??? */}
+						<div style={{ marginBottom: '60px' }}>
+							{' '}
+							<button onclick={this.onDeleteClick} className="btn btn-danger" />
+						</div>
 					</div>
 				);
 			} else {
@@ -65,5 +74,5 @@ const mapStateToProps = state => ({
 
 export default connect(
 	mapStateToProps,
-	{ getProfile }
+	{ getProfile, deleteAccount }
 )(Dashboard);
