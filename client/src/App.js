@@ -18,6 +18,7 @@ import './App.css';
 import { clearProfile } from './actions/profile';
 import CreateProfile from './components/profile/CreateProfile';
 import EditProfile from './components/edit-profile/EditProfile';
+import AddReview from './components/add-review/AddReview';
 // import { decode } from 'iconv-lite';
 const store = configureStore();
 
@@ -68,6 +69,9 @@ class App extends Component {
 									path="/edit-profile"
 									component={EditProfile}
 								/>
+							</Switch>
+							<Switch>
+								<PrivateRoute exact path="/add-review" component={AddReview} />
 							</Switch>
 						</div>
 						<Footer />

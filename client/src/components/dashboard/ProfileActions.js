@@ -6,13 +6,13 @@ const ProfileActions = () => {
 			<Link to="edit-profile" className="btn btn-light">
 				<i className="fas fa-user-circle text-info mr-1" /> Edit Profile
 			</Link>
-			<Link to="add-experience.html" className="btn btn-light">
-				<i className="fab fa-black-tie text-info mr-1" />
-				Add Experience
+			<Link to="add-review" className="btn btn-light">
+				<i className="fas fa-pen-square text-info mr-1" />
+				Add Film Review
 			</Link>
-			<Link to="add-education.html" className="btn btn-light">
-				<i className="fas fa-graduation-cap text-info mr-1" />
-				Add Education
+			<Link to="add-favorite" className="btn btn-light">
+				<i className="fas fa-film text-info mr-1" />
+				Add Favorite Films
 			</Link>
 		</div>
 	);
