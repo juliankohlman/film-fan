@@ -34,7 +34,31 @@ export const getProfile = () => dispatch => {
 				payload: res.data
 			})
 		)
-		.catch(err => dispatch({ type: GET_PROFILE, payload: {} }));
+		.catch(err =>
+			dispatch({
+				type: GET_PROFILE,
+				payload: {}
+			})
+		);
+};
+
+// Get profile via handle
+export const getProfileByHandle = handle => dispatch => {
+	dispatch(profileLoadingStatus());
+	axios
+		.get(`/api/profile/handle/${handle}`)
+		.then(res =>
+			dispatch({
+				type: GET_PROFILE,
+				payload: res.data
+			})
+		)
+		.catch(err =>
+			dispatch({
+				type: GET_PROFILE,
+				payload: null
+			})
+		);
 };
 
 // Create profile
@@ -43,7 +67,12 @@ export const createProfile = (profileData, history) => dispatch => {
 	axios
 		.post('/api/profile', profileData)
 		.then(res => history.push('/dashboard'))
-		.catch(err => dispatch({ type: GET_ERRORS, payload: err.response.data }));
+		.catch(err =>
+			dispatch({
+				type: GET_ERRORS,
+				payload: err.response.data
+			})
+		);
 };
 
 // Add review
@@ -51,7 +80,12 @@ export const addReview = (reviewData, history) => dispatch => {
 	axios
 		.post('/api/profile/review', reviewData)
 		.then(res => history.push('/dashboard'))
-		.catch(err => dispatch({ type: GET_ERRORS, payload: err.response.data }));
+		.catch(err =>
+			dispatch({
+				type: GET_ERRORS,
+				payload: err.response.data
+			})
+		);
 };
 
 // Delete film review
@@ -59,7 +93,12 @@ export const deleteReview = id => dispatch => {
 	axios
 		.delete(`/api/profile/review/${id}`)
 		.then(res => dispatch({ type: GET_PROFILE, payload: res.data }))
-		.catch(err => dispatch({ type: GET_ERRORS, payload: err.response.data }));
+		.catch(err =>
+			dispatch({
+				type: GET_ERRORS,
+				payload: err.response.data
+			})
+		);
 };
 
 // Get all FilmFan profiles
@@ -73,7 +112,12 @@ export const getProfiles = () => dispatch => {
 				payload: res.data
 			})
 		)
-		.catch(err => dispatch({ type: GET_PROFILES, payload: null }));
+		.catch(err =>
+			dispatch({
+				type: GET_PROFILES,
+				payload: null
+			})
+		);
 };
 
 // Delete user account/profile

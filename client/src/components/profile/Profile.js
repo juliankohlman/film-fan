@@ -5,20 +5,25 @@ import Reviews from './Reviews';
 import Favorites from './Favorites';
 import Loading from '../helpers/Loading';
 import { connect } from 'react-redux';
-import getProfileByHandle from '../../actions/profile';
+import { getProfileByHandle } from '../../actions/profile';
 
 class Profile extends Component {
 	componentDidMount = () => {
-		this.getProfileByHandle();
+		// * TODO store => this.props.match.params.handle; in a variable
+		if (this.props.match.params.handle) {
+			this.props.getProfileByHandle(this.props.match.params.handle);
+		}
 	};
 
 	render() {
-		<div>
-			<Header />
-			<About />
-			<Reviews />
-			<Favorites />
-		</div>;
+		return (
+			<div>
+				<Header />
+				<About />
+				<Reviews />
+				<Favorites />
+			</div>
+		);
 	}
 }
 
@@ -26,4 +31,7 @@ const mapStateToProps = state => ({
 	profile: state.profile
 });
 
-export default connect(mapStateToProps)(Profile);
+export default connect(
+	mapStateToProps,
+	{ getProfileByHandle }
+)(Profile);
