@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Loading from '../helpers/Loading';
+import ProfileItem from './ProfileItem';
 import { connect } from 'react-redux';
 import { getProfiles } from '../../actions/profile';
 
@@ -15,7 +16,9 @@ export class Profiles extends Component {
 			profileItems = <Loading />;
 		} else {
 			if (profiles.length > 0) {
-				profileItems = <h4>Profiles here</h4>;
+				profileItems = profiles.map(profile => (
+					<ProfileItem key={profile.id} profile={profile} />
+				));
 			} else {
 				profileItems = <h4>No profiles found...</h4>;
 			}
