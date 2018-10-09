@@ -47,7 +47,10 @@ export const createProfile = (profileData, history) => dispatch => {
 
 // Add review
 export const addReview = (reviewData, history) => dispatch => {
-	axios.post('/api/profile/review');
+	axios
+		.post('/api/profile/review', reviewData)
+		.then(res => history.push('/dashboard'))
+		.catch(err => dispatch({ type: GET_ERRORS, payload: err.response.data }));
 };
 
 // Delete user account/profile

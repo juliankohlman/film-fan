@@ -1,4 +1,5 @@
 import React from 'react';
+import classnames from 'classnames';
 
 const TextAreaGroup = ({
 	name,
@@ -12,24 +13,16 @@ const TextAreaGroup = ({
 	return (
 		<div className="form-group">
 			<textarea
-				className={
-					error
-						? 'form-control form-control-lg is-invalid'
-						: 'form-control form-control-lg'
-				}
+				className={classnames('form-control form-control-lg', {
+					'is-invalid': error
+				})}
 				placeholder={placeholder}
 				name={name}
 				value={value}
 				onChange={onChange}
 			/>
 			{info && <small className="form-text text-muted">{info}</small>}
-			{/* <div className="invalid-feedback">
-				{typeof msg[0] === 'string'
-					? msg[0]
-					: typeof msg[0] === 'object'
-						? msg[0][name]
-						: null}
-			</div> */}
+			{error && <div className="invalid-feedback">{error}</div>}
 		</div>
 	);
 };

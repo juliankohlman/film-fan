@@ -43,21 +43,21 @@ const ProfileSchema = new Schema({
 	},
 	reviews: [
 		{
-			movie: {
+			film: {
 				type: String,
 				required: true
 			},
-			releaseyear: {
-				// should be generated from TMDb
-				type: Number,
-				required: true
-			},
-			rating: {
-				type: Number,
-				min: 0,
-				max: 5,
-				required: true
-			},
+			// releaseyear: {
+			// 	// should be generated from TMDb
+			// 	type: Number,
+			// 	required: true
+			// },
+			// rating: {
+			// 	type: Number,
+			// 	min: 0,
+			// 	max: 5,
+			// 	required: true
+			// },
 			comments: [
 				{
 					user: {
@@ -82,10 +82,6 @@ const ProfileSchema = new Schema({
 			],
 			review: {
 				type: String,
-				required: true
-			},
-			watchedon: {
-				type: Date,
 				required: true
 			},
 			likes: {
