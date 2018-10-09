@@ -194,11 +194,11 @@ router.post(
 		}
 		Profile.findOne({ user: req.user.id }).then(profile => {
 			const newReview = {
-				movie: req.body.movie,
-				releaseyear: req.body.releaseyear,
-				rating: req.body.rating,
+				film: req.body.film,
+				// releaseyear: req.body.releaseyear,
+				// rating: req.body.rating,
 				review: req.body.review,
-				watchedon: req.body.watchedon
+				// watchedon: req.body.watchedon
 			};
 
 			// Add review to reviews array
