@@ -5,7 +5,8 @@ import {
 	GET_ERRORS,
 	PROFILE_LOADING,
 	CLEAR_CURRENT_PROFILE,
-	SET_CURRENT_USER
+	SET_CURRENT_USER,
+	GET_PROFILES
 } from './types';
 
 // Profile loading
@@ -51,6 +52,28 @@ export const addReview = (reviewData, history) => dispatch => {
 		.post('/api/profile/review', reviewData)
 		.then(res => history.push('/dashboard'))
 		.catch(err => dispatch({ type: GET_ERRORS, payload: err.response.data }));
+};
+
+// Delete film review
+export const deleteReview = id => dispatch => {
+	axios
+		.delete(`/api/profile/review/${id}`)
+		.then(res => dispatch({ type: GET_PROFILE, payload: res.data }))
+		.catch(err => dispatch({ type: GET_ERRORS, payload: err.response.data }));
+};
+
+// Get all FilmFan profiles
+export const getProfiles = () => dispatch => {
+	dispatch(profileLoadingStatus());
+	axios
+		.get('/api/profile/all')
+		.then(res =>
+			dispatch({
+				type: GET_PROFILES,
+				payload: res.data
+			})
+		)
+		.catch(err => dispatch({ type: GET_PROFILES, payload: null }));
 };
 
 // Delete user account/profile

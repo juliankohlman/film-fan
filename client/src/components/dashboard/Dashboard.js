@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getProfile, deleteAccount } from '../../actions/profile';
 import ProfileActions from './ProfileActions';
+import Review from './Review';
 
 class Dashboard extends Component {
 	// immediately get the profile
@@ -32,7 +33,8 @@ class Dashboard extends Component {
 							Welcome <Link to={`/profile/${profile.handle}`}>{user.name}</Link>
 						</p>
 						<ProfileActions />
-						{/* Add exp and education??? */}
+						{/* Add rev and favorite films??? */}
+						<Review reviews={profile.reviews} />
 						<div style={{ marginBottom: '60px' }}>
 							{' '}
 							<button onClick={this.onDeleteClick} className="btn btn-danger">
