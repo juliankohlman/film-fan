@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import Header from './Header';
 import About from './About';
 import Reviews from './Reviews';
@@ -16,12 +17,35 @@ class Profile extends Component {
 	};
 
 	render() {
+		const { profile, loading } = this.props.profile;
+		let profileContent;
+
+		if (profile === null || loading) {
+			profileContent = <Loading />;
+		} else {
+			profileContent = (
+				<div>
+					<div className="row">
+						<div className="col-md-6">
+							<Link to="/profiles" className="btn btn-light mb-3 float-left">
+								Back to Profiles
+							</Link>
+						</div>
+						<div className="col-md-6" />
+					</div>
+					<Header profile={profile} />
+					<About />
+					<Reviews />
+					<Favorites />
+				</div>
+			);
+		}
 		return (
-			<div>
-				<Header />
-				<About />
-				<Reviews />
-				<Favorites />
+			<div className="profile">
+				<div className="container">
+					<div className="row" />
+					<div className="col-md-12">{profileContent}</div>
+				</div>
 			</div>
 		);
 	}
