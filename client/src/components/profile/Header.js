@@ -18,7 +18,9 @@ class Header extends Component {
 							</div>
 						</div>
 						<div className="text-center">
-							<h1 className="display-4 text-center">{profile.user.name}</h1>
+							<h1 className="display-4 text-center">{`${profile.user.name[0].toUpperCase()}${profile.user.name.slice(
+								1
+							)}`}</h1>
 							<p className="lead text-center">
 								Loves the <strong>{profile.genre}</strong> film genre.
 							</p>
