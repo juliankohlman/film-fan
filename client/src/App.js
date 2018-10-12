@@ -21,6 +21,7 @@ import { clearProfile } from './actions/profile';
 import CreateProfile from './components/profile/CreateProfile';
 import EditProfile from './components/edit-profile/EditProfile';
 import AddReview from './components/add-review/AddReview';
+import NotFound from './components/not-found/NotFound';
 // import { decode } from 'iconv-lite';
 const store = configureStore();
 
@@ -77,6 +78,7 @@ class App extends Component {
 							<Switch>
 								<PrivateRoute exact path="/add-review" component={AddReview} />
 							</Switch>
+							<Route exact path="/not-found" component={NotFound} />
 						</div>
 						<Footer />
 					</div>

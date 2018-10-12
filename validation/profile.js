@@ -6,7 +6,7 @@ module.exports = function validateProfileInput(data) {
 	// Sanitize required profile inputs
 	data.handle = !isEmpty(data.handle) ? data.handle : '';
 	data.genre = !isEmpty(data.genre) ? data.genre : '';
-	data.skills = !isEmpty(data.skills) ? data.skills : '';
+	data.favoritefilms = !isEmpty(data.favoritefilms) ? data.favoritefilms : '';
 
 	if (!Validator.isLength(data.handle, { min: 2, max: 40 })) {
 		errors.handle = 'Handle should be between 2 and 40 characters';
@@ -20,8 +20,8 @@ module.exports = function validateProfileInput(data) {
 		errors.genre = 'Genre selection is required';
 	}
 
-	if (Validator.isEmpty(data.skills)) {
-		errors.skills = 'Skills field is required';
+	if (Validator.isEmpty(data.favoritefilms)) {
+		errors.favoritefilms = 'Skills field is required';
 	}
 
 	if (!isEmpty(data.website)) {

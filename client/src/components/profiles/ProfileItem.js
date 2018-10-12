@@ -26,7 +26,7 @@ class ProfileItem extends Component {
 					</div>
 					{/* Change font-awesome icon from checkmark after skills get converted to favorite films */}
 					<div className="col-md-4 d-none d-md-block">
-						<h4>Skills</h4>
+						<h4>Favorite Films</h4>
 						<ul className="list-group">
 							{profile.skills.slice(0, 4).map((skill, idx) => (
 								<li key={idx} className="list-group-item">

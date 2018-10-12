@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import Header from './Header';
 import About from './About';
 import Reviews from './Reviews';
-import Favorites from './Favorites';
+
 import Loading from '../helpers/Loading';
 import { connect } from 'react-redux';
 import { getProfileByHandle } from '../../actions/profile';
@@ -15,6 +15,12 @@ class Profile extends Component {
 			this.props.getProfileByHandle(this.props.match.params.handle);
 		}
 	};
+
+	componentWillReceiveProps(nextProps) {
+		if (nextProps.profile.profile === null && this.props.profile.loading) {
+			this.props.history.push('/not-found');
+		}
+	}
 
 	render() {
 		const { profile, loading } = this.props.profile;
@@ -36,7 +42,6 @@ class Profile extends Component {
 					<Header profile={profile} />
 					<About profile={profile} />
 					<Reviews reviews={profile.reviews} />
-					<Favorites />
 				</div>
 			);
 		}

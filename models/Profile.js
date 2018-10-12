@@ -23,7 +23,7 @@ const ProfileSchema = new Schema({
 		type: String,
 		required: true
 	},
-	skills: {
+	favoritefilms: {
 		// skills
 		type: [String],
 		required: true
