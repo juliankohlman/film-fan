@@ -15,11 +15,13 @@ class Register extends Component {
 			password2: '',
 			errors: {}
 		};
-
-		// example binding within constructor
-		this.onChange = this.onChange.bind(this);
-		this.onSubmit = this.onSubmit.bind(this);
 	}
+
+	componentWillReceiveProps = nextProps => {
+		if (nextProps.errors) {
+			this.setState({ errors: nextProps.errors });
+		}
+	};
 
 	componentDidMount = () => {
 		if (this.props.auth.isAuthenticated) {
@@ -27,15 +29,18 @@ class Register extends Component {
 		}
 	};
 
-	static getDerivedStateFromProps = nextProps => {
-		return { errors: nextProps.errors };
+	//  static getDerivedStateFromProps(nextProps, prevState) {
+
+	//  }
+	// static getDerivedStateFromProps = nextProps => {
+	// 	if (nextProps.errors) return { errors: nextProps.errors };
+	// };
+
+	onChange = e => {
+		this.setState({ [e.target.name]: e.target.value });
 	};
 
-	onChange(e) {
-		this.setState({ [e.target.name]: e.target.value });
-	}
-
-	onSubmit(e) {
+	onSubmit = e => {
 		e.preventDefault();
 
 		const newUser = {
@@ -47,12 +52,12 @@ class Register extends Component {
 
 		// redirect from with registerUser action
 		this.props.registerUser(newUser, this.props.history);
-	}
+	};
 
 	render() {
 		// access pull errors state from state object
 		const { errors } = this.state;
-		// let msg = Object.values(errors);
+		console.log(errors);
 
 		return (
 			<div className="register">

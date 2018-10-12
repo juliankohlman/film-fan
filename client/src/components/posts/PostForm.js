@@ -13,6 +13,12 @@ class PostForm extends Component {
 		};
 	}
 
+	componentWillReceiveProps = nextProps => {
+		if (nextProps.errors) {
+			this.setState({ errors: nextProps.errors });
+		}
+	};
+
 	onSubmit = e => {
 		e.preventDefault();
 
@@ -24,7 +30,9 @@ class PostForm extends Component {
 			avatar: user.avatar
 		};
 
-		this.pr;
+		this.props.addPost(newPost);
+		this.setState({ text: '', errors: {} });
+
 		console.log('submit');
 	};
 

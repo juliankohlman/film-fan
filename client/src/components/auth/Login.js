@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { loginUser } from '../../actions/auth';
 import TextFieldGroup from '../helpers/TextFieldGroup';
 
+// * TODO form fields with errors not showing up in Login and Register components
 class Login extends Component {
 	constructor(props) {
 		super(props);
@@ -12,14 +13,13 @@ class Login extends Component {
 			password: '',
 			errors: {}
 		};
-
-		this.onSubmit = this.onSubmit.bind(this);
-		this.handleChange = this.handleChange.bind(this);
 	}
 
-	handleChange(e) {
-		this.setState({ [e.target.name]: e.target.value });
-	}
+	// componentWillReceiveProps = nextProps => {
+	// 	if (nextProps.errors) {
+	// 		this.setState({ errors: nextProps.errors });
+	// 	}
+	// };
 
 	componentDidMount = () => {
 		if (this.props.auth.isAuthenticated) this.props.history.push('/dashboard');
@@ -29,11 +29,16 @@ class Login extends Component {
 		if (nextProps.auth.isAuthenticated) {
 			nextProps.history.push('/dashboard');
 		}
-
-		if (nextProps.errors) return { errors: nextProps.errors };
+		// if (nextProps.errors) {
+		// 	return { errors: nextProps.errors };
+		// }
 	};
 
-	onSubmit(e) {
+	handleChange = e => {
+		this.setState({ [e.target.name]: e.target.value });
+	};
+
+	onSubmit = e => {
 		e.preventDefault();
 
 		const userData = {
@@ -42,7 +47,7 @@ class Login extends Component {
 		};
 
 		this.props.loginUser(userData);
-	}
+	};
 
 	render() {
 		const { errors } = this.state;
