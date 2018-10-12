@@ -22,6 +22,7 @@ class About extends Component {
 							's Bio
 						</h3>
 						<p className="lead">
+							{/* Add some leading questions to help users fill out there bio and give a sense of why they love films */}
 							{isEmpty(profile.bio) ? (
 								<span>{profile.user.name} does not have a bio yet.</span>
 							) : (
@@ -29,7 +30,7 @@ class About extends Component {
 							)}
 						</p>
 						<hr />
-						<h3 className="text-center text-info">Skill Set</h3>
+						<h3 className="text-center text-info">Favorite Films</h3>
 						<div className="row">
 							<div className="d-flex flex-wrap justify-content-center align-items-center">
 								{favorites}
