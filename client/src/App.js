@@ -23,6 +23,7 @@ import EditProfile from './components/edit-profile/EditProfile';
 import AddReview from './components/add-review/AddReview';
 import NotFound from './components/not-found/NotFound';
 import Posts from './components/posts/Posts';
+import Post from './components/post/Post';
 
 // import { decode } from 'iconv-lite';
 const store = configureStore();
@@ -82,6 +83,9 @@ class App extends Component {
 							</Switch>
 							<Switch>
 								<PrivateRoute exact path="/feed" component={Posts} />
+							</Switch>
+							<Switch>
+								<PrivateRoute exact path="/post/:id" component={Post} />
 							</Switch>
 							<Route exact path="/not-found" component={NotFound} />
 						</div>
