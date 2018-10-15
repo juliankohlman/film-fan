@@ -113,6 +113,24 @@ export const unlikePost = id => dispatch => {
 		);
 };
 
+// Add comment to post
+export const addComment = (postId, commentData) => dispatch => {
+	axios
+		.post(`/api/posts/comment/${postId}`, commentData)
+		.then(res => {
+			dispatch({
+				type: GET_POST,
+				payload: res.data
+			});
+		})
+		.catch(err =>
+			dispatch({
+				type: GET_ERRORS,
+				payload: err.response.data
+			})
+		);
+};
+
 // Set loading state for posts
 export const postLoading = () => {
 	return {

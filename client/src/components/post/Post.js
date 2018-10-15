@@ -4,6 +4,7 @@ import Loading from '../helpers/Loading';
 import { getPost } from '../../actions/post';
 import { Link } from 'react-router-dom';
 import PostItem from '../posts/PostItem';
+import CommentForm from './CommentForm';
 
 class Post extends Component {
 	componentDidMount = () => {
@@ -20,6 +21,7 @@ class Post extends Component {
 			postInfo = (
 				<div>
 					<PostItem post={post} showActions={false} />
+					<CommentForm postId={post._id} />
 				</div>
 			);
 		}
