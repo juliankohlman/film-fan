@@ -64,6 +64,36 @@ export const deletePost = id => dispatch => {
 		);
 };
 
+// Like a post
+export const likePost = id => dispatch => {
+	axios
+		.post(`/api/posts/like/${id}`)
+		.then(res => {
+			dispatch(getPosts());
+		})
+		.catch(err =>
+			dispatch({
+				type: GET_ERRORS,
+				payload: err.response.data
+			})
+		);
+};
+
+// Unlike a post
+export const unlikePost = id => dispatch => {
+	axios
+		.post(`/api/posts/unlike/${id}`)
+		.then(res => {
+			dispatch(getPosts());
+		})
+		.catch(err =>
+			dispatch({
+				type: GET_ERRORS,
+				payload: err.response.data
+			})
+		);
+};
+
 // Set loading state for posts
 export const postLoading = () => {
 	return {
