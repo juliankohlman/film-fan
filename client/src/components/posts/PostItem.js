@@ -2,10 +2,16 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import classnames from 'classnames';
 import { Link } from 'react-router-dom';
+import { deletePost } from '../../actions/post';
 
 class PostItem extends Component {
+	handleDelete = id => {
+		this.props.deletePost(id);
+	};
+
 	render() {
 		const { post, auth } = this.props;
+
 		return (
 			<div className="card card-body mb-3">
 				<div className="row">
@@ -31,14 +37,14 @@ class PostItem extends Component {
 						</button>
 						<Link
 							to={`/post/${post._id}`}
-							href="post.html"
+							// href="post.html"
 							className="btn btn-info mr-1"
 						>
 							Comments
 						</Link>
 						{post.user === auth.user.id ? (
 							<button
-								onClick={this.handleDelete(post._id)}
+								onClick={() => this.handleDelete(post._id)}
 								type="button"
 								className="btn btn-danger mr-1"
 							>
@@ -53,14 +59,10 @@ class PostItem extends Component {
 }
 
 const mapStateToProps = state => ({
-	auth: state.auth,
-	post: state.post
+	auth: state.auth
 });
 
-// const mapDispatchToProps = {};
-export default PostItem;
-
-// export default connect(
-// 	mapStateToProps,
-// 	mapDispatchToProps
-// )(PostItem);
+export default connect(
+	mapStateToProps,
+	{ deletePost }
+)(PostItem);
