@@ -13,7 +13,7 @@ class Header extends Component {
 								<img
 									className="rounded-circle"
 									src={profile.user.avatar}
-									alt="Gravatar image"
+									alt=""
 								/>
 							</div>
 						</div>
