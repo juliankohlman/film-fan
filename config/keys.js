@@ -1,4 +1,5 @@
-module.exports = {
-	mongoURI: 'mongodb://julian:kohlman1@ds031962.mlab.com:31962/filmfan',
-	secretOrKey: 'KD6-3.7'
-};
+if (process.env.NODE_ENV === 'production') {
+	module.exports = require('./keys_prod');
+} else {
+	module.exports = require('./keys_dev');
+}
