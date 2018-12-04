@@ -11,6 +11,9 @@
 		"dev": "concurrently 'yarn server' 'yarn client' ",
 		"heroku-postbuild": "NPM_CONFIG_PRODUCTION=false yarn --prefix client && yarn run build --prefix client"
 	},
+	"engines": {
+		"node": "11.3.0"
+	},
 	"author": "J.Kohlman",
 	"license": "MIT",
 	"dependencies": {
