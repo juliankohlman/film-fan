@@ -17,8 +17,8 @@ class Landing extends Component {
 								<h1 className="display-3 mb-4">Film Fan</h1>
 								<p className="lead">
 									{' '}
-									Create a fan profile share posts and get connected with other
-									fans.
+									Create a fan profile share posts write film reviews and get
+									connected with other fans.
 								</p>
 								<hr />
 								<Link to="/register" className="btn btn-lg btn-info mr-2">
