@@ -7,7 +7,7 @@
 		"client-install": "yarn --prefix client",
 		"start": "node server.js",
 		"server": "nodemon server.js",
-		"client": "yarn --cwd client start",
+		"client": "yarn --prefix client start",
 		"dev": "concurrently 'yarn server' 'yarn client' ",
 		"heroku-postbuild": "NPM_CONFIG_PRODUCTION=false yarn --prefix client && yarn run build --prefix client"
 	},
