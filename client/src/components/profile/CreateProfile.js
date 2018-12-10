@@ -26,6 +26,8 @@ class CreateProfile extends Component {
 		};
 	}
 
+	// * TODO:
+	// * refactor react -- remove unnecessary form fields
 	static getDerivedStateFromProps = nextProps => {
 		if (nextProps.errors) {
 			return { errors: nextProps.errors };
